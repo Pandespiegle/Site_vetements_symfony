@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class VetementFormType extends AbstractType
 {
@@ -41,11 +42,17 @@ class VetementFormType extends AbstractType
                 'choices' => $this->marqueRepository->findAllValues(),
                 'choice_label' => 'name',
             ])
-            ->add('taille', ChoiceType::class, [
-                'choices' => $this->tailleRepository->findAllValues(),
-                'choice_label' => 'name',
-            ])
-        ;
+            ->add('taille', CollectionType::class, [ 
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => [
+                    'choices' => $this->tailleRepository->findAllValues(),
+                    'choice_label' => "name",
+                    'expanded' => true, 
+                    'multiple' => true, 
+            ],
+               
+            ]);
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

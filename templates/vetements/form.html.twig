@@ -10,7 +10,7 @@
 
 <div class="example-wrapper">
      {{ form_start(form) }}
-    <div class="my-custom-class-for-errors">
+    <div >
         {{ form_errors(form) }}
     </div>
 
@@ -18,24 +18,26 @@
         <div class="col">
             {{ form_row(form.name) }}
         </div>
-        <div class="col" id="some-custom-id">
+        <div class="col" >
             {{ form_row(form.prix) }}
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col" id="some-custom-id">
+        <div class="col">
             {{ form_row(form.categorie) }}
         </div>
-        <div class="col" id="some-custom-id">
+        <div class="col" >
             {{ form_row(form.marque) }}
         </div>
-        <div class="col" id="some-custom-id">
+    </div>
+    <div class="row mt-3">
+        <div class="col">
             {{ form_row(form.taille) }}
         </div>
     </div>
+    <button type="submit"  class="btn btn-primary row mt-3">Submit</button>
 
 {{ form_end(form) }}
-    <button type="submit"  class="btn btn-primary row mt-3">Submit</button>
 </div>
 <div>
 </div>

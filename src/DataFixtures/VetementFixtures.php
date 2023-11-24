@@ -23,7 +23,7 @@ class VetementFixtures extends Fixture
                     $vetement->setImageUrl('https://www.europann.com/9355-thickbox_default/ron-pull-fin-a-capuche-marine-noir.jpg');
                     $vetement->setCategorie($this->getReference(CategorieFixtures::CATEGORIE_REFERENCE . ' ' . $key3));
                     $vetement->setMarque($this->getReference(MarqueFixtures::MARQUE_REFERENCE . ' ' . $key2));
-                    $vetement->setTaille($this->getReference(TailleFixtures::TAILLE_REFERENCE . ' ' . $key));
+                    $vetement->addTaille($this->getReference(TailleFixtures::TAILLE_REFERENCE . ' ' . $key));
                     $manager->persist($vetement);
                 }
             }

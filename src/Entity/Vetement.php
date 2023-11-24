@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VetementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VetementRepository::class)]
@@ -28,8 +30,13 @@ class Vetement
     #[ORM\ManyToOne(targetEntity: Marque::class, inversedBy: 'vetements')]  
     private ?Marque $marque = null;
 
-    #[ORM\ManyToOne(targetEntity: Taille::class, inversedBy: 'vetements')]
-    private ?Taille $taille = null;
+    #[ORM\ManyToMany(targetEntity: Taille::class, inversedBy: 'Vetements')]
+    private Collection $tailles;
+
+    public function __construct()
+    {
+        $this->tailles = new ArrayCollection();
+    }
 
     public function getImageUrl(): ?string
     {
@@ -43,18 +50,6 @@ class Vetement
         return $this;
     }
     
-
-    public function getTaille(): ?Taille
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(?Taille $taille): static
-    {
-        $this->taille = $taille;
-
-        return $this;
-    }
 
     public function getMarque(): ?Marque
     {
@@ -107,6 +102,27 @@ class Vetement
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getTaille(): Collection
+    {
+        return $this->tailles;
+    }
+
+    public function addTaille(Taille $taille): static
+    {
+        if (!$this->tailles->contains($taille)) {
+            $this->tailles->add($taille);
+        }
+
+        return $this;
+    }
+
+    public function removeTaille(Taille $taille): static
+    {
+        $this->tailles->removeElement($taille);
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TailleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TailleRepository::class)]
@@ -18,6 +20,14 @@ class Taille
 
     #[ORM\OneToMany(targetEntity: Vetement::class, mappedBy: 'taille')]
     private $vetements;
+
+    #[ORM\ManyToMany(targetEntity: Vetement::class, mappedBy: 'Taille')]
+    private Collection $Vetements;
+
+    public function __construct()
+    {
+        $this->Vetements = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -36,4 +46,13 @@ class Taille
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Vetement>
+     */
+    public function getVetements(): Collection
+    {
+        return $this->Vetements;
+    }
+
 }

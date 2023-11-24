@@ -28,8 +28,8 @@ class VetementsController extends AbstractController
         // creates a task object and initializes some data for this example
         $vetement = new Vetement();
         $form = $this->createForm(VetementFormType::class, $vetement);
-
         $form->handleRequest($request);
+        
         if($form->isSubmitted() && $form->isValid()) {
             $vetement = $form->getData();
             var_dump($vetement);
