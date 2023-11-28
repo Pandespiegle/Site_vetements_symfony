@@ -42,7 +42,7 @@ class VetementFormType extends AbstractType
                 'choices' => $this->marqueRepository->findAllValues(),
                 'choice_label' => 'name',
             ])
-            ->add('taille', CollectionType::class, [ 
+            ->add('tailles', CollectionType::class, [ 
                 'entry_type'   => ChoiceType::class,
                 'entry_options'  => [
                     'choices' => $this->tailleRepository->findAllValues(),

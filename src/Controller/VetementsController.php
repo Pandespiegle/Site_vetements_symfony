@@ -38,8 +38,26 @@ class VetementsController extends AbstractController
             return $this->redirectToRoute('app_vetements');
         }
 
-        return $this->render('vetements/form.html.twig', [
+        return $this->render('vetements/ajout.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
+
+    #[Route('/vetements/detail/{id}', name: 'detail_vetement')]
+    public function detail(int $id, VetementRepository $vetementRepository): Response
+    {
+
+        $vetement = $vetementRepository->findOneBySomeField($id);
+        if (!$vetement) {
+            throw $this->createNotFoundException(
+                'No vetement found for id '.$id
+            );
+        }
+        
+        return $this->render('vetements/detail.html.twig', [
+            'vetement' => $vetement,
+        ]);
+    } 
+    
 }

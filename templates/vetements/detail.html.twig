@@ -8,12 +8,28 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container text- ">
+<div class="container mt-5 ">
     <div class="row justify-content-center"> 
-        <div class="col-12 text-center">
-            <h1>Les vetements</h1>
+    <div class="col-6">
+            <img src={{vetement.imageUrl}} alt="vetement" class="img-thumbnail" >
         </div>
-   
+        <div class="col-6 text-center mt-3">
+            <h1>{{ vetement.name }}</h1>
+            <h1>{{ vetement.prix }}€</h1>
+        <div class="col-4 mx-auto mt-5  ">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Choisir une taille</option>
+                {% for item in vetement.tailles %}
+                <option value={{item.name}}>{{item.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-10 mx-auto mt-5  ">
+            <a href="#" class="btn btn-secondary col-4">Ajouter au favoris</a>
+            <a href="#" class="btn btn-dark col-4">Ajouter au panier</a>
+        </div>
+
+        
     </div>
 </div>
 <div>

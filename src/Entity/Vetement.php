@@ -106,12 +106,12 @@ class Vetement
         return $this;
     }
 
-    public function getTaille(): Collection
+    public function getTailles(): Collection
     {
         return $this->tailles;
     }
 
-    public function addTaille(Taille $taille): static
+    public function addTailles(Taille $taille): static
     {
         if (!$this->tailles->contains($taille)) {
             $this->tailles->add($taille);
