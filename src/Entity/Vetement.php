@@ -111,7 +111,7 @@ class Vetement
         return $this->tailles;
     }
 
-    public function addTailles(Taille $taille): static
+    public function addTaille(Taille $taille): static
     {
         if (!$this->tailles->contains($taille)) {
             $this->tailles->add($taille);

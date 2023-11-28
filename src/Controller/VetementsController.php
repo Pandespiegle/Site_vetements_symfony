@@ -32,7 +32,6 @@ class VetementsController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()) {
             $vetement = $form->getData();
-            var_dump($vetement);
             $entityManager->persist($vetement);
             $entityManager->flush();
             return $this->redirectToRoute('app_vetements');
