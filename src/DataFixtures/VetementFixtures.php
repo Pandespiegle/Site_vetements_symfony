@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Vetement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class VetementFixtures extends Fixture
+class VetementFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -31,5 +32,14 @@ class VetementFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            CategorieFixtures::class,
+            MarqueFixtures::class,
+            TailleFixtures::class,
+        ];
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VetementsController!{% endblock %}
+{% block title %}Liste des chaussures{% endblock %}
 
 {% block body %}
 <style>
@@ -10,10 +10,13 @@
 
 <div class="container text- ">
     <div class="row justify-content-center"> 
-        <div class="col-12 text-center">
+        <div class=" text-center">
+            <div class="position-relative">
+                <a href = "{{ path('chaussure_new') }}"class="btn btn-secondary position-absolute top-0 end-0 mt-3">Ajouter</a>
+              </div>
             <h1>Les vetements</h1>
         </div>
-    {% for item in listeVetements %}
+    {% for item in listeChaussures %}
     <div class="card col-2 m-4" >
         <img src="{{ item.imageUrl }}" alt="Image de l'article" width="200" height="200">
         <h5>
@@ -21,7 +24,7 @@
         </h5>
         <div class = "row justify-content-evenly">
             <p class = "col-4">{{ item.prix }}€</p>
-            <a href="{{ path('detail_vetement',{'id': item.id}) }}" class="btn btn-dark col-4">Voir</a>
+            <a href="{{ path('detail_chaussure',{'id': item.id}) }}" class="btn btn-dark col-4">Voir</a>
         </div>
     </div>
     {% endfor %}

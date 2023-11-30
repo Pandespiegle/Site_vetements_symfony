@@ -25,8 +25,8 @@ class VetementRepository extends ServiceEntityRepository
     {
         // Use the EntityManager to create a query
         $query = $this->createQueryBuilder('e')
-            ->getQuery();
-        
+            ->getQuery()
+            ->orderBy("e.createdAt", "DESC");
         // Execute the query and return the results
         return $query->getResult();
     }

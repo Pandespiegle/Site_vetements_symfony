@@ -17,15 +17,14 @@ class VetementsController extends AbstractController
     public function index(VetementRepository $vetementRepository): Response
     {
 
-        return $this->render('vetements/index.html.twig', [
+        return $this->render('vetement/liste.html.twig', [
             'controller_name' => 'VetementsController', 'listeVetements' => $vetementRepository->findAll()
         ]);
     }
 
-    #[Route('/vetements/new', name: 'app_vetements_new')]
+    #[Route('/vetements/new', name: 'vetements_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // creates a task object and initializes some data for this example
         $vetement = new Vetement();
         $form = $this->createForm(VetementFormType::class, $vetement);
         $form->handleRequest($request);
@@ -37,7 +36,7 @@ class VetementsController extends AbstractController
             return $this->redirectToRoute('app_vetements');
         }
 
-        return $this->render('vetements/ajout.html.twig', [
+        return $this->render('vetement/ajout.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -54,7 +53,7 @@ class VetementsController extends AbstractController
             );
         }
         
-        return $this->render('vetements/detail.html.twig', [
+        return $this->render('vetement/detail.html.twig', [
             'vetement' => $vetement,
         ]);
     } 

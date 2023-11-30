@@ -6,7 +6,7 @@ use App\Entity\Taille;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class TailleFixtures extends Fixture
+class TailleFixtures extends Fixture 
 {
 
     public const TAILLE_REFERENCE = 'taille';
@@ -21,4 +21,6 @@ class TailleFixtures extends Fixture
         }
         $manager->flush();
     }
+
+    
 }

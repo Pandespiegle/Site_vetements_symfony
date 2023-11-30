@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des vêtements{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container text- ">
+    <div class="row justify-content-center"> 
+        <div class=" text-center">
+            <div class="position-relative">
+                <a href = "{{ path('vetements_new') }}"class="btn btn-secondary position-absolute top-0 end-0 mt-3">Ajouter</a>
+              </div>
+            <h1>Les vetements</h1>
+        </div>
+    {% for item in listeVetements %}
+    <div class="card col-2 m-4" >
+        <img src="{{ item.imageUrl }}" alt="Image de l'article" width="200" height="200">
+        <h5>
+            {{ item.name }}
+        </h5>
+        <div class = "row justify-content-evenly">
+            <p class = "col-4">{{ item.prix }}€</p>
+            <a href="{{ path('detail_vetement',{'id': item.id}) }}" class="btn btn-dark col-4">Voir</a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+<div>
+</div>
+{% endblock %}

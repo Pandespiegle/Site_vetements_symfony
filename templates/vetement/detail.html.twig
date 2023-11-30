@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ vetement.name }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container mt-5 ">
+    <div class="row justify-content-center"> 
+    <div class="col-6">
+            <img src={{vetement.imageUrl}} alt="Image de l'article" class="img-thumbnail" >
+        </div>
+        <div class="col-6 text-center mt-3">
+            <h1>{{ vetement.name }}</h1>
+            <h2>{{ vetement.prix }}€</h2>
+            <h3>{{ vetement.marque.name }}</h3>
+        <div class="col-4 mx-auto mt-5  ">
+            
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Choisir une taille</option>
+                {% for item in vetement.tailles %}
+                <option value={{item.name}}>{{item.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-10 mx-auto mt-5  ">
+            <a href="#" class="btn btn-secondary col-4">Ajouter au favoris</a>
+            <a href="#" class="btn btn-dark col-4">Ajouter au panier</a>
+        </div>
+
+        
+    </div>
+</div>
+<div>
+</div>
+{% endblock %}

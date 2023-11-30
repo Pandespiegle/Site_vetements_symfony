@@ -2,31 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
-use App\Entity\Vetement;
+use App\Entity\Chaussure;
 use App\Repository\CategorieRepository;
 use App\Repository\MarqueRepository;
-use App\Repository\TailleRepository;
+use App\Repository\PointureRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class VetementFormType extends AbstractType
+class ChaussureFormType extends AbstractType
 {
 
     private  $categorieRepository;
     private $marqueRepository;
-    private $tailleRepository;
+    private $pointureRepository;
 
-    public function __construct(CategorieRepository $categorieRepository, MarqueRepository $marqueRepository, TailleRepository $tailleRepository)
+    public function __construct(CategorieRepository $categorieRepository, MarqueRepository $marqueRepository, PointureRepository $pointureRepository)
     {
         $this->categorieRepository = $categorieRepository;
         $this->marqueRepository = $marqueRepository;
-        $this->tailleRepository = $tailleRepository;
+        $this->pointureRepository = $pointureRepository;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -44,9 +43,9 @@ class VetementFormType extends AbstractType
                 'choice_label' => 'name',
             ]) 
 
-            ->add('tailles', ChoiceType::class, [
-                'choices' => $this->tailleRepository->findAllValues(),
-                'choice_label' => 'name',
+            ->add('pointures', ChoiceType::class, [
+                'choices' => $this->pointureRepository->findAllValues(),
+                'choice_label' => 'pointure',
                 'expanded'      => true,
                 'multiple'      => true,
                 'data' => [],
@@ -56,7 +55,7 @@ class VetementFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Vetement::class,
+            'data_class' => Chaussure::class,
         ]);
     }
 }

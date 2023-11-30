@@ -6,7 +6,7 @@ use App\Entity\Categorie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class CategorieFixtures extends Fixture
+class CategorieFixtures extends Fixture 
 {
     public const CATEGORIE_REFERENCE = 'categorie';
     public function load(ObjectManager $manager): void
@@ -20,4 +20,7 @@ class CategorieFixtures extends Fixture
         }
         $manager->flush();
     }
+
+   
+    
 }

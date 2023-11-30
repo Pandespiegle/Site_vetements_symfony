@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VetementsController!{% endblock %}
+{% block title %}{{ chaussure.name }}{% endblock %}
 
 {% block body %}
 <style>
@@ -11,16 +11,18 @@
 <div class="container mt-5 ">
     <div class="row justify-content-center"> 
     <div class="col-6">
-            <img src={{vetement.imageUrl}} alt="Image de l'article" class="img-thumbnail" >
+            <img src={{chaussure.imageUrl}} alt="Image de l'article" class="img-thumbnail" >
         </div>
         <div class="col-6 text-center mt-3">
-            <h1>{{ vetement.name }}</h1>
-            <h1>{{ vetement.prix }}€</h1>
+            <h1>{{ chaussure.name }}</h1>
+            <h2>{{ chaussure.prix }}€</h2>
+            <h3>{{ chaussure.marque.name }}</h3>
         <div class="col-4 mx-auto mt-5  ">
+            
             <select class="form-select" aria-label="Default select example">
-                <option selected>Choisir une taille</option>
-                {% for item in vetement.tailles %}
-                <option value={{item.name}}>{{item.name}}</option>
+                <option selected>Choisir une pointure</option>
+                {% for item in chaussure.pointures %}
+                 <option value={{item.pointure}}>{{item.pointure}}</option>
                 {% endfor %}
             </select>
         </div>

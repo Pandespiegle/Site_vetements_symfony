@@ -2,30 +2,28 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
+use App\Repository\PointureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MarqueRepository::class)]
-class Marque
+#[ORM\Entity(repositoryClass: PointureRepository::class)]
+class Pointure
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column]
+    private ?float $pointure = null;
 
-    #[ORM\OneToMany(targetEntity: Vetement::class, mappedBy: 'marque')]
-    private $vetements;
-
-    #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Chaussure::class)]
+    #[ORM\ManyToMany(targetEntity: Chaussure::class, mappedBy: 'pointure')]
     private Collection $chaussures;
 
     public function __construct()
     {
+
         $this->chaussures = new ArrayCollection();
     }
 
@@ -34,14 +32,14 @@ class Marque
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getPointure(): ?float
     {
-        return $this->name;
+        return $this->pointure;
     }
 
-    public function setName(string $name): static
+    public function setPointure(float $pointure): static
     {
-        $this->name = $name;
+        $this->pointure = $pointure;
 
         return $this;
     }
@@ -58,7 +56,7 @@ class Marque
     {
         if (!$this->chaussures->contains($chaussure)) {
             $this->chaussures->add($chaussure);
-            $chaussure->setMarque($this);
+            $chaussure->addPointure($this);
         }
 
         return $this;
@@ -67,10 +65,7 @@ class Marque
     public function removeChaussure(Chaussure $chaussure): static
     {
         if ($this->chaussures->removeElement($chaussure)) {
-            // set the owning side to null (unless already changed)
-            if ($chaussure->getMarque() === $this) {
-                $chaussure->setMarque(null);
-            }
+            $chaussure->removePointure($this);
         }
 
         return $this;

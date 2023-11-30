@@ -33,9 +33,15 @@ class Vetement
     #[ORM\ManyToMany(targetEntity: Taille::class, inversedBy: 'Vetements')]
     private Collection $tailles;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    
     public function __construct()
     {
         $this->tailles = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+
     }
 
     public function getImageUrl(): ?string
@@ -124,6 +130,17 @@ class Vetement
     {
         $this->tailles->removeElement($taille);
 
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
