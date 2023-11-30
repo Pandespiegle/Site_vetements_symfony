@@ -26,6 +26,7 @@ class VetementRepository extends ServiceEntityRepository
         // Use the EntityManager to create a query
         $query = $this->createQueryBuilder('e')
             ->orderBy("e.createdAt", "DESC")
+            ->andWhere('e.deletedAt IS NULL')
             ->getQuery();
         // Execute the query and return the results
         return $query->getResult();
@@ -49,6 +50,7 @@ class VetementRepository extends ServiceEntityRepository
    {
        return $this->createQueryBuilder('v')
            ->andWhere('v.id = :val')
+           ->andWhere('v.deletedAt IS NULL')
            ->setParameter('val', $value)
            ->getQuery()
            ->getOneOrNullResult()

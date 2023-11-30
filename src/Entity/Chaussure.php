@@ -39,6 +39,12 @@ class Chaussure
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $commentaire = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $deletedAt = null;
+
     public function __construct()
     {
         $this->pointures = new ArrayCollection();
@@ -59,7 +65,7 @@ class Chaussure
     public function setName(string $name): static
     {
         $this->name = $name;
-
+        $this->updatedAt = new \DateTimeImmutable();
         return $this;
     }
 
@@ -71,6 +77,7 @@ class Chaussure
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -83,6 +90,7 @@ class Chaussure
     public function setImageUrl(?string $imageUrl): static
     {
         $this->imageUrl = $imageUrl;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -95,6 +103,7 @@ class Chaussure
     public function setMarque(?Marque $marque): static
     {
         $this->marque = $marque;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -111,6 +120,8 @@ class Chaussure
     {
         if (!$this->pointures->contains($pointure)) {
             $this->pointures->add($pointure);
+            $this->updatedAt = new \DateTimeImmutable();
+
         }
 
         return $this;
@@ -119,6 +130,7 @@ class Chaussure
     public function removePointure(Pointure $pointure): static
     {
         $this->pointures->removeElement($pointure);
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -131,6 +143,7 @@ class Chaussure
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }
@@ -155,6 +168,31 @@ class Chaussure
     public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
+        $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeImmutable
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
+    {
+        $this->deletedAt = $deletedAt;
 
         return $this;
     }

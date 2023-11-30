@@ -46,7 +46,7 @@ class ChaussureController extends AbstractController
                 'No chaussure found for id '.$id 
             );
         }
-        $entityManager->remove($chaussure);
+        $chaussure->setDeletedAt(new \DateTimeImmutable());
         $entityManager->flush();
         
         return $this->redirectToRoute('app_chaussure');

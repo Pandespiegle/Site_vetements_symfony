@@ -51,7 +51,7 @@ class VetementsController extends AbstractController
                 'No vetement found for id '.$id 
             );
         }
-        $entityManager->remove($vetement);
+        $vetement->setDeletedAt(new \DateTimeImmutable());
         $entityManager->flush();
         
         return $this->redirectToRoute('app_vetements');

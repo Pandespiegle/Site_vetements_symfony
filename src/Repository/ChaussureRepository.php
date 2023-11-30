@@ -25,6 +25,7 @@ class ChaussureRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('e')
             ->orderBy('e.createdAt', 'DESC')
+            ->andWhere('e.deletedAt IS NULL')
             ->getQuery();
             
         return $query->getResult();
@@ -35,6 +36,7 @@ class ChaussureRepository extends ServiceEntityRepository
    {
        return $this->createQueryBuilder('v')
            ->andWhere('v.id = :val')
+           ->andWhere('v.deletedAt IS NULL')
            ->setParameter('val', $value)
            ->getQuery()
            ->getOneOrNullResult()
