@@ -37,7 +37,7 @@ class VetementFormType extends AbstractType
                 'label' => 'Prix (en €)',
             ]) 
             ->add('imageUrl', null, [
-                'label' => 'URL de l\'image',
+                'label' => 'URL de l\'image (optionnel)',
             ])
             ->add('categorie', ChoiceType::class, [
                 'choices'  => $this->categorieRepository->findAllValues(),

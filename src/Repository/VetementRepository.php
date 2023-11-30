@@ -21,12 +21,12 @@ class VetementRepository extends ServiceEntityRepository
         parent::__construct($registry, Vetement::class);
     }
 
-    public function findAllValues()
+    public function findAllSortedValues()
     {
         // Use the EntityManager to create a query
         $query = $this->createQueryBuilder('e')
-            ->getQuery()
-            ->orderBy("e.createdAt", "DESC");
+            ->orderBy("e.createdAt", "DESC")
+            ->getQuery();
         // Execute the query and return the results
         return $query->getResult();
     }

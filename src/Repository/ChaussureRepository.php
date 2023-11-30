@@ -21,13 +21,12 @@ class ChaussureRepository extends ServiceEntityRepository
         parent::__construct($registry, Chaussure::class);
     }
 
-    public function findAllValues()
+    public function findAllSortedValues()
     {
-        // Use the EntityManager to create a query
         $query = $this->createQueryBuilder('e')
-            ->getQuery()
-            ->orderBy('e.createdAt', 'DESC');
-        // Execute the query and return the results
+            ->orderBy('e.createdAt', 'DESC')
+            ->getQuery();
+            
         return $query->getResult();
     }
 

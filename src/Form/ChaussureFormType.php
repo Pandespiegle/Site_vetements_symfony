@@ -33,7 +33,9 @@ class ChaussureFormType extends AbstractType
                 'label' => 'Nom du vêtement',
             ])
             ->add('prix') 
-            ->add('imageUrl')
+            ->add('imageUrl', null, [
+                'label' => 'Url de l\'image ; (optionnel)',
+            ])
             ->add('categorie', ChoiceType::class, [
                 'choices'  => $this->categorieRepository->findAllValues(),
                 'choice_label' => 'name',

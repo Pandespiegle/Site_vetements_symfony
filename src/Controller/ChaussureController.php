@@ -16,7 +16,7 @@ class ChaussureController extends AbstractController
     public function index(ChaussureRepository $chaussuresRepository ): Response 
     {
         return $this->render('chaussure/liste.html.twig', [
-            'controller_name' => 'ChaussureController', 'listeChaussures' => $chaussuresRepository->findAll()
+            'controller_name' => 'ChaussureController', 'listeChaussures' => $chaussuresRepository->findAllSortedValues()
         ]);
     }
 

@@ -18,7 +18,7 @@ class VetementsController extends AbstractController
     {
 
         return $this->render('vetement/liste.html.twig', [
-            'controller_name' => 'VetementsController', 'listeVetements' => $vetementRepository->findAll()
+            'controller_name' => 'VetementsController', 'listeVetements' => $vetementRepository->findAllSortedValues()
         ]);
     }
 
