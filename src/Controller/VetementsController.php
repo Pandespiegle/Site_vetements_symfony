@@ -41,6 +41,22 @@ class VetementsController extends AbstractController
         ]);
     }
 
+    #[Route('/vetement/delete/{id}', name: 'delete_vetement')]
+    public function delete(int $id, VetementRepository $vetmementRepository, EntityManagerInterface $entityManager): Response
+    {
+
+        $vetement = $vetmementRepository->findOneBySomeField($id);
+        if (!$vetement) {
+            throw $this->createNotFoundException(
+                'No vetement found for id '.$id 
+            );
+        }
+        $entityManager->remove($vetement);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_vetements');
+    }
+
 
     #[Route('/vetements/detail/{id}', name: 'detail_vetement')]
     public function detail(int $id, VetementRepository $vetementRepository): Response

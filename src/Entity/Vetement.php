@@ -18,7 +18,7 @@ class Vetement
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageUrl = null;
 
     #[ORM\Column]
@@ -36,6 +36,9 @@ class Vetement
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $commentaire = null;
+
     
     public function __construct()
     {
@@ -49,7 +52,7 @@ class Vetement
         return $this->imageUrl;
     }
 
-    public function setImageUrl(string $imageUrl): static
+    public function setImageUrl(?string $imageUrl): static
     {
         $this->imageUrl = $imageUrl;
 
@@ -141,6 +144,18 @@ class Vetement
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getCommentaire(): ?string
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?string $commentaire): static
+    {
+        $this->commentaire = $commentaire;
+
         return $this;
     }
 }

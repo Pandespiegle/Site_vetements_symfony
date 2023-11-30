@@ -49,7 +49,11 @@ class ChaussureFormType extends AbstractType
                 'expanded'      => true,
                 'multiple'      => true,
                 'data' => [],
-            ]) ;
+            ]) 
+            ->add('commentaire', null, [
+                'label' => 'Commentaire (optionnel)',
+            ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void

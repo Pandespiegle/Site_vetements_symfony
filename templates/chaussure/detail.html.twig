@@ -26,11 +26,23 @@
                 {% endfor %}
             </select>
         </div>
+        {% if chaussure.commentaire %}
+            <div class="mt-3">
+                <h4>Commentaire</h4>
+                <div>{{chaussure.commentaire}}</div>
+            </div>
+
+            
+        {% endif %}
         <div class="col-10 mx-auto mt-5  ">
             <a href="#" class="btn btn-secondary col-4">Ajouter au favoris</a>
             <a href="#" class="btn btn-dark col-4">Ajouter au panier</a>
         </div>
 
+        <div class="col-10 mx-auto mt-5  ">
+            <a href="{{ path('delete_chaussure',{'id': chaussure.id}) }}" class="btn btn-danger col-4">Supprimer</a>
+            
+        </div>
         
     </div>
 </div>

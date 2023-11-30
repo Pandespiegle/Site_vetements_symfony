@@ -33,8 +33,12 @@ class VetementFormType extends AbstractType
             ->add('name', null, [
                 'label' => 'Nom du vêtement',
             ])
-            ->add('prix') 
-            ->add('imageUrl')
+            ->add('prix', null, [
+                'label' => 'Prix (en €)',
+            ]) 
+            ->add('imageUrl', null, [
+                'label' => 'URL de l\'image',
+            ])
             ->add('categorie', ChoiceType::class, [
                 'choices'  => $this->categorieRepository->findAllValues(),
                 'choice_label' => 'name',
@@ -50,7 +54,10 @@ class VetementFormType extends AbstractType
                 'expanded'      => true,
                 'multiple'      => true,
                 'data' => [],
-            ]) ;
+            ]) 
+            ->add('commentaire', null, [
+                'label' => 'Commentaire (optionnel)',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -27,7 +27,7 @@ class ChaussureController extends AbstractController
         $chaussure = $chaussureRepository->findOneBySomeField($id);
         if (!$chaussure) {
             throw $this->createNotFoundException(
-                'No vetement found for id '.$id
+                'No chaussure found for id '.$id 
             );
         }
         
@@ -35,6 +35,22 @@ class ChaussureController extends AbstractController
             'chaussure' => $chaussure,
         ]);
     } 
+
+    #[Route('/chaussures/delete/{id}', name: 'delete_chaussure')]
+    public function delete(int $id, ChaussureRepository $chaussureRepository, EntityManagerInterface $entityManager): Response
+    {
+
+        $chaussure = $chaussureRepository->findOneBySomeField($id);
+        if (!$chaussure) {
+            throw $this->createNotFoundException(
+                'No chaussure found for id '.$id 
+            );
+        }
+        $entityManager->remove($chaussure);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_chaussure');
+    }
 
     #[Route('/chaussures/new', name: 'chaussure_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
